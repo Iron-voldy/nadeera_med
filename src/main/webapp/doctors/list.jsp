@@ -1,4 +1,4 @@
-<%-- src/main/webapp/list_doctors.jsp --%>
+<%-- src/main/webapp/doctors/list.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="layout-container">
-        <jsp:include page="components/sidebar.jsp">
+        <jsp:include page="../components/sidebar.jsp">
             <jsp:param name="currentPage" value="doctors" />
         </jsp:include>
 
         <div class="content">
-            <jsp:include page="components/header.jsp">
+            <jsp:include page="../components/header.jsp">
                 <jsp:param name="pageTitle" value="Doctor Management" />
             </jsp:include>
 
@@ -123,7 +122,7 @@
                 </div>
             </div>
 
-            <jsp:include page="components/footer.jsp" />
+            <jsp:include page="../components/footer.jsp" />
         </div>
     </div>
 
@@ -149,11 +148,6 @@
                 });
             }
         });
-
-        // Confirm delete
-        function confirmDelete(doctorId, doctorName) {
-            return confirm(`Are you sure you want to delete Dr. ${doctorName}?`);
-        }
     </script>
 </body>
 </html>

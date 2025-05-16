@@ -1,3 +1,2 @@
-1,hasindu wanninayake,cariology,0779393662,hasindutwm@gmail.com,No 24/2,1746149585150_images (43).jpeg
 2,tharushi Wathsala,cariology 11,0771212432,tharushi2002@gmail.com,No 24/2,monnankulama
-3,hasindu wanninayake,cariology,0779393662,hasindutwm@gmail.com,No 24/2,monnankulama
+3,user mithun,Endocrinology,0779393662,hasindutwm@gmail.com,mithun1@gmail.com,1747365331448_review-management-nethuli.png

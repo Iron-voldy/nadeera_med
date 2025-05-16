@@ -1,4 +1,4 @@
-<%-- src/main/webapp/add_doctor.jsp --%>
+<%-- src/main/webapp/doctors/add.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="layout-container">
-        <jsp:include page="components/sidebar.jsp">
+        <jsp:include page="../components/sidebar.jsp">
             <jsp:param name="currentPage" value="doctors" />
         </jsp:include>
 
         <div class="content">
-            <jsp:include page="components/header.jsp">
+            <jsp:include page="../components/header.jsp">
                 <jsp:param name="pageTitle" value="Add New Doctor" />
             </jsp:include>
 
@@ -95,142 +94,8 @@
                 </form>
             </div>
 
-            <jsp:include page="components/footer.jsp" />
+            <jsp:include page="../components/footer.jsp" />
         </div>
     </div>
-
-    <script>
-        // Preview uploaded image
-        document.addEventListener('DOMContentLoaded', function() {
-            const photoInput = document.getElementById('photo');
-            if (photoInput) {
-                photoInput.addEventListener('change', function() {
-                    previewImage(this);
-                });
-            }
-
-            // Form validation
-            const doctorForm = document.getElementById('doctor-form');
-            if (doctorForm) {
-                doctorForm.addEventListener('submit', function(e) {
-                    if (!validateDoctorForm()) {
-                        e.preventDefault();
-                    }
-                });
-            }
-        });
-
-        function previewImage(input) {
-            const preview = document.getElementById('photo-preview');
-            const errorMessage = document.getElementById('photo-error');
-
-            if (preview) {
-                preview.style.display = 'none';
-            }
-
-            if (errorMessage) {
-                errorMessage.textContent = '';
-            }
-
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-
-                // Validate file type
-                const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-                if (!validTypes.includes(file.type)) {
-                    if (errorMessage) {
-                        errorMessage.textContent = 'Only JPG or PNG images are allowed';
-                    }
-                    input.value = '';
-                    return;
-                }
-
-                // Validate file size (5MB max)
-                const maxSize = 5 * 1024 * 1024;
-                if (file.size > maxSize) {
-                    if (errorMessage) {
-                        errorMessage.textContent = 'Image size exceeds 5MB limit';
-                    }
-                    input.value = '';
-                    return;
-                }
-
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if (preview) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function validateDoctorForm() {
-            let isValid = true;
-
-            // Get form elements
-            const name = document.getElementById('name');
-            const specialty = document.getElementById('specialty');
-            const phone = document.getElementById('phone');
-            const email = document.getElementById('email');
-            const address = document.getElementById('address');
-            const photo = document.getElementById('photo');
-
-            // Get error elements
-            const nameError = document.getElementById('name-error');
-            const specialtyError = document.getElementById('specialty-error');
-            const phoneError = document.getElementById('phone-error');
-            const emailError = document.getElementById('email-error');
-            const addressError = document.getElementById('address-error');
-            const photoError = document.getElementById('photo-error');
-
-            // Clear previous errors
-            if (nameError) nameError.textContent = '';
-            if (specialtyError) specialtyError.textContent = '';
-            if (phoneError) phoneError.textContent = '';
-            if (emailError) emailError.textContent = '';
-            if (addressError) addressError.textContent = '';
-            if (photoError) photoError.textContent = '';
-
-            // Validate name
-            if (name && !name.value.trim()) {
-                if (nameError) nameError.textContent = 'Name is required';
-                isValid = false;
-            }
-
-            // Validate specialty
-            if (specialty && !specialty.value) {
-                if (specialtyError) specialtyError.textContent = 'Specialty is required';
-                isValid = false;
-            }
-
-            // Validate phone (10 digits)
-            if (phone && !phone.value.match(/^\d{10}$/)) {
-                if (phoneError) phoneError.textContent = 'Phone must be a 10-digit number';
-                isValid = false;
-            }
-
-            // Validate email
-            if (email && !email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                if (emailError) emailError.textContent = 'Invalid email format';
-                isValid = false;
-            }
-
-            // Validate address
-            if (address && !address.value.trim()) {
-                if (addressError) addressError.textContent = 'Address is required';
-                isValid = false;
-            }
-
-            // Validate photo
-            if (photo && !photo.files.length) {
-                if (photoError) photoError.textContent = 'Photo is required';
-                isValid = false;
-            }
-
-            return isValid;
-        }
-    </script>
 </body>
 </html>
